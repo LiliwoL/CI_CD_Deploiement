@@ -24,11 +24,11 @@ jobs:
       - run: echo "HelloWorld"
 
       # On crée le fichier toto
-      - name: Create toto.twt file
+      - name: Create toto.txt file
         env:
           SSH_KEY: ${{ secrets.TOTO }}
         run: |
-          echo "$SSH_KEY" > toto.txt
+          echo "$SSH_KEY" > toto.txt && cat toto.txt
 
       - run: echo "after secret" > toto.txt
       - run: cat toto.txt
