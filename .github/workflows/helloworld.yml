@@ -20,27 +20,25 @@ jobs:
 
     steps:
       - name: "Create private SSH key"
-      env:
-        SSH_KEY: ${{ secrets.SSH_KEY }}
-        SSH_HOST: ${{ secrest.SSH_HOST }}
-        SSH_USER: ${{ secrest.SSH_USER }}
-      run: |
-        mkdir -p ~/.ssh/
-        echo "$SSH_KEY" > ~/.ssh/id_rsa.key
-        chmod 600 ~/.ssh/id_rsa.key
-        cat >>~/.ssh/config <<END
-          Host serveurProd
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/id_rsa.key
-            StrictHostKeyChecking no
-          END
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrest.SSH_HOST }}
+          SSH_USER: ${{ secrest.SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/id_rsa.key
+          chmod 600 ~/.ssh/id_rsa.key
+          cat >>~/.ssh/config <<END
+            Host serveurProd
+              HostName $SSH_HOST
+              User $SSH_USER
+              IdentityFile ~/.ssh/id_rsa.key
+              StrictHostKeyChecking no
+            END
 
       - name: "Connexion au serveur de prod"
-      run: |
-        ssh serveurProd
-
-
+        run: |
+          ssh serveurProd
 
   # Nom du job
   hello:
