@@ -22,10 +22,8 @@ jobs:
 
     steps:
       - run: echo "HelloWorld"
-      - run: wget http://prod.liliwol.fr
-      - run: cat index.html
       # On crée le fichier toto
       - run: echo "$TOTO" > toto.txt
-      - run: echo "after" > toto.txt
+      - run: echo "after secret" > toto.txt
       - run: cat toto.txt
 
