@@ -22,12 +22,13 @@ jobs:
 
     steps:
       - run: echo "HelloWorld"
+
       # On crée le fichier toto
-      - run: echo "$SSH_KEY" > toto.txt
-      env:
-        SSH_KEY: ${{ secrets.TOTO }}
+      - name: Create toto.twt file
+        env:
+          SSH_KEY: ${{ secrets.TOTO }}
+        run: |
+          echo "$SSH_KEY" > toto.txt
+
       - run: echo "after secret" > toto.txt
       - run: cat toto.txt
-      - run: cat "$SSH_KEY"
-      env:
-        SSH_KEY: ${{ secrets.TOTO }}
