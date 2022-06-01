@@ -22,6 +22,6 @@ jobs:
 
     steps:
       - run: echo "HelloWorld"
-      - run: wget http://prod.liliwol.fr >> out.txt
-      - run: cat out.txt
+      - run: wget http://prod.liliwol.fr
+      - run: cat index.html
 
