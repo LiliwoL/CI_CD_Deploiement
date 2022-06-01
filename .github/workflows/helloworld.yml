@@ -12,6 +12,36 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
+  # Création du porteclé SSH
+  create_ssh:
+    name: "Création du SSH"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      -name: "Create private SSH key"
+      env:
+        SSH_KEY: ${{ secrets.SSH_KEY }}
+        SSH_HOST: ${{ secrest.SSH_HOST }}
+        SSH_USER: ${{ secrest.SSH_USER }}
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$SSH_KEY" > ~/.ssh/id_rsa.key
+        chmod 600 ~/.ssh/id_rsa.key
+        cat >>~/.ssh/config <<END
+          Host serveurProd
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/id_rsa.key
+            StrictHostKeyChecking no
+          END
+
+      -name: "Connexion au serveur de prod"
+      run: |
+        ssh serveurProd
+
+
+
   # Nom du job
   hello:
     name: Hello World
