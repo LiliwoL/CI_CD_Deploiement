@@ -30,9 +30,9 @@ jobs:
           chmod 600 ~/.ssh/id_rsa.key
           cat >>~/.ssh/config <<END
             Host serveurProd
-              HostName $SSH_HOST_PROD
-              User $SSH_USER_PROD
-              IdentityFile ~/.ssh/serveurProd.key
+              HostName $SSH_HOST
+              User $SSH_USER
+              IdentityFile ~/.ssh/id_rsa.key
               StrictHostKeyChecking no
           END
 
