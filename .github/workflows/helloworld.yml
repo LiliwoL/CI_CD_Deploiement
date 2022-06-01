@@ -20,8 +20,6 @@ jobs:
     # https://docs.github.com/articles/virtual-environments-for-github-actions
     runs-on: ubuntu-latest
 
-    env:
-      SSH_KEY: ${{ secrets.TOTO }}
     steps:
       - run: echo "HelloWorld"
       # On crée le fichier toto
@@ -29,3 +27,5 @@ jobs:
       - run: echo "after secret" > toto.txt
       - run: cat toto.txt
       - run: cat "$SSH_KEY"
+      - env:
+        SSH_KEY: ${{ secrets.TOTO }}
