@@ -28,9 +28,4 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.TOTO }}
         run: |
-          echo "$SSH_KEY" > toto.txt && cat toto.txt
-
-      - run: echo "after secret" > toto.txt
-      - run: cat toto.txt
-        env:
-          SSH_KEY: ${{ secrets.TOTO }}
+          echo "$SSH_KEY" > toto.txt && echo "after secret" > toto.txt && cat toto.txt
