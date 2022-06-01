@@ -24,4 +24,5 @@ jobs:
       - run: echo "HelloWorld"
       - run: wget http://prod.liliwol.fr
       - run: cat index.html
+      - run: composer install
 
