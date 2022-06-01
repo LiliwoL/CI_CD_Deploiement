@@ -26,5 +26,6 @@ jobs:
       - run: cat index.html
       # On crée le fichier toto
       - run: echo "$TOTO" > toto.txt
+      - run: echo "after" > toto.txt
       - run: cat toto.txt
 
