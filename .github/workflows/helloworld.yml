@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -name: "Create private SSH key"
+      - name: "Create private SSH key"
       env:
         SSH_KEY: ${{ secrets.SSH_KEY }}
         SSH_HOST: ${{ secrest.SSH_HOST }}
@@ -36,7 +36,7 @@ jobs:
             StrictHostKeyChecking no
           END
 
-      -name: "Connexion au serveur de prod"
+      - name: "Connexion au serveur de prod"
       run: |
         ssh serveurProd
 
