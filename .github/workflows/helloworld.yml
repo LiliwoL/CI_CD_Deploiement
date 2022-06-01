@@ -38,7 +38,7 @@ jobs:
 
       - name: "Connexion au serveur de prod"
         run: |
-          ssh serveurProd
+          ssh serveurProd 'cd /var/www/html/CI_CD_Deploiement/ && git fetch && git pull'
 
   # Nom du job
   hello:
