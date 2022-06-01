@@ -25,6 +25,6 @@ jobs:
       - run: wget http://prod.liliwol.fr
       - run: cat index.html
       # On crée le fichier toto
-      - run: echo "$TOTO" >> toto.txt
+      - run: echo "$TOTO" > toto.txt
       - run: cat toto.txt
 
