@@ -24,5 +24,7 @@ jobs:
       - run: echo "HelloWorld"
       - run: wget http://prod.liliwol.fr
       - run: cat index.html
-      - run: composer install
+      # On crée le fichier toto
+      - run: echo "$TOTO" >> toto.txt
+      - run: cat toto.txt
 
