@@ -11,14 +11,17 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
   # Nom du job
   hello:
     name: Hello World
-    
+
     # Environnement virtuel du job
     # https://docs.github.com/articles/virtual-environments-for-github-actions
     runs-on: ubuntu-latest
-    
+
     steps:
-      - run: echo "HelloWorld"  
-  
+      - run: echo "HelloWorld"
+      - run: wget http://prod.liliwol.fr >> out.txt
+      - run: cat out.txt
+
