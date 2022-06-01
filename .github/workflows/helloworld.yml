@@ -23,7 +23,7 @@ jobs:
     steps:
       - run: echo "HelloWorld"
       # On crée le fichier toto
-      - run: echo "$TOTO" > toto.txt
+      - run: echo "${{ secrets.TOTO }}" > toto.txt
       - run: echo "after secret" > toto.txt
       - run: cat toto.txt
 
