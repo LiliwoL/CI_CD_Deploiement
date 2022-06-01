@@ -32,3 +32,5 @@ jobs:
 
       - run: echo "after secret" > toto.txt
       - run: cat toto.txt
+        env:
+          SSH_KEY: ${{ secrets.TOTO }}
