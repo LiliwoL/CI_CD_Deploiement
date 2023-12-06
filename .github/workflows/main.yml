@@ -34,8 +34,6 @@ jobs:
 
           # Le fichier id_rsa DOIT avoir les bons droits!
           chmod 600 ~/.ssh/id_rsa
-          
-          END
 
       # Connexion SSH ET Git pull dans la foulée
       - name: "Connexion SSH et Git Pull"
