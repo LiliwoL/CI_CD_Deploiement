@@ -1,0 +1,47 @@
+# Nom pour ce workflow
+name: "Déploiement auto suite à un push sur la branche master"
+
+# ----------------------------------------------------------
+# Trigger sur push sur la branche master
+on:
+  push:
+    branches:
+      - master
+
+# ----------------------------------------------------------
+jobs:
+  # Création de la VM Ubuntu
+  creation-vm:
+    name: "Création d'une instance de Ubuntu"
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      # Ajout du jeu de clés de l'utilisateur de déploiement
+      # sur cette vm qui vient d'etre créée
+      - name: "Création du jeu de clé SSH pour l'utilisateur de déploiement"
+        # Récupération des variables d'environnement
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          # Création dossier ~/.ssh sur la VM
+          mkdir -p ~/.ssh/
+
+          # Ajout de la clé privée dans le fichier ~/.ssh/id_rsa
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+
+          # Le fichier id_rsa DOIT avoir les bons droits!
+          chmod 600 ~/.ssh/id_rsa
+          
+          END
+
+      # Connexion SSH ET Git pull dans la foulée
+      - name: "Connexion SSH et Git Pull"
+        # Récupération des variables d'environnement
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          ssh $SSH_USER@$SSH_HOST 'cd /var/www/html/CI_CD_Deploiement/ && git fetch && git pull'
