@@ -41,7 +41,7 @@ jobs:
               HostName $SSH_HOST
               User $SSH_USER
               Port $SSH_PORT
-              IdentityFile ~/.ssh/id_rsa.key
+              IdentityFile ~/.ssh/id_rsa
               StrictHostKeyChecking no
 
       # Connexion SSH ET Git pull dans la foulée
