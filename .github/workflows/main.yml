@@ -25,6 +25,7 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
           # Création dossier ~/.ssh sur la VM
           mkdir -p ~/.ssh/
@@ -35,13 +36,16 @@ jobs:
           # Le fichier id_rsa DOIT avoir les bons droits!
           chmod 600 ~/.ssh/id_rsa
 
+          cat >>~/.ssh/config <<END
+            Host serveurProdVM
+              HostName $SSH_HOST
+              User $SSH_USER
+              Port $SSH_PORT
+              IdentityFile ~/.ssh/id_rsa.key
+              StrictHostKeyChecking no
+
       # Connexion SSH ET Git pull dans la foulée
       - name: "Connexion SSH et Git Pull"
-        # Récupération des variables d'environnement
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          ssh $SSH_USER@$SSH_HOST -p $SSH_PORT 'cd /var/www/html/CI_CD_Deploiement/ && git fetch && git pull'
+          ssh serveurProdVM 'cd /var/www/html/CI_CD_Deploiement/ && git fetch && git pull'
 
