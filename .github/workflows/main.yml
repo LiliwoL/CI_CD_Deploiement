@@ -51,5 +51,5 @@ jobs:
       # Récupération des variables d'environnement
         run: |
           echo "Déplacement dans $SSH_PATH"
-          ssh serveurProdVM 'cd /var/www/html/CI_CD_Deploiement && git fetch && git pull'
+          ssh serveurProdVM 'cd /var/www/html/CI_CD_Deploiement_prod && git fetch && git pull'
 
