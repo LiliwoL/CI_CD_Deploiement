@@ -50,6 +50,8 @@ jobs:
       - name: "Connexion SSH et Git Pull"
       # Récupération des variables d'environnement
         run: |
-          echo "Déplacement dans $SSH_PATH"
+          echo " ----------------- "
+          echo "⚡ Déplacement dans le dossier /var/www/html/CI_CD_Deploiement_prod/ "
+          echo " ----------------- "
           ssh serveurProdVM 'cd /var/www/html/CI_CD_Deploiement_prod && git fetch && git pull'
 
