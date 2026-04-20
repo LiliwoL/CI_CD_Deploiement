@@ -46,12 +46,10 @@ jobs:
 
       # Connexion SSH
       # Déplacement dans le dossier /var/www/html/CI_CD_Deploiement_prod/ 
-      # Git pull dans la foulée
+      # Git fetch et pull
       - name: "Connexion SSH et Git Pull"
       # Récupération des variables d'environnement
-        env:
-          SSH_PATH: ${{ secrets.SSH_PATH }}
         run: |
           echo "Déplacement dans $SSH_PATH"
-          ssh serveurProdVM 'cd $SSH_PATH && git fetch && git pull'
+          ssh serveurProdVM 'cd /var/www/html/CI_CD_Deploiement && git fetch && git pull'
 
