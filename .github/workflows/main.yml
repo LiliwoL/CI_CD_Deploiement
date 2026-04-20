@@ -52,5 +52,6 @@ jobs:
         env:
           SSH_PATH: ${{ secrets.SSH_PATH }}
         run: |
+          echo "Déplacement dans $SSH_PATH"
           ssh serveurProdVM 'cd $SSH_PATH && git fetch && git pull'
 
