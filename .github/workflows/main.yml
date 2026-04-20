@@ -47,5 +47,5 @@ jobs:
       # Connexion SSH ET Git pull dans la foulée
       - name: "Connexion SSH et Git Pull"
         run: |
-          ssh serveurProdVM 'cd /var/www/html/CI_CD_Deploiement/ && git fetch && git pull'
+          ssh serveurProdVM 'cd /var/www/html/CI_CD_Deploiement_prod/ && git fetch && git pull'
 
