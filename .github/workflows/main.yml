@@ -53,5 +53,5 @@ jobs:
           echo " ----------------- "
           echo "⚡ Déplacement dans le dossier /var/www/html/CI_CD_Deploiement_prod/ "
           echo " ----------------- "
-          ssh serveurProdVM 'cd /var/www/html/CI_CD_Deploiement_prod && git fetch && git pull'
+          ssh serveurProdVM 'cd /var/www/html/CI_CD_Deploiement_prod && git config --global --add safe.directory /var/www/html/CI_CD_Deploiement_prod && git fetch && git pull'
 
