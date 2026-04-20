@@ -26,7 +26,6 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
-          SSH_PATH: ${{ secrets.SSH_PATH }}
         run: |
           # Création dossier ~/.ssh sur la VM
           mkdir -p ~/.ssh/
@@ -49,6 +48,9 @@ jobs:
       # Déplacement dans le dossier /var/www/html/CI_CD_Deploiement_prod/ 
       # Git pull dans la foulée
       - name: "Connexion SSH et Git Pull"
+      # Récupération des variables d'environnement
+        env:
+          SSH_PATH: ${{ secrets.SSH_PATH }}
         run: |
           ssh serveurProdVM 'cd $SSH_PATH && git fetch && git pull'
 
