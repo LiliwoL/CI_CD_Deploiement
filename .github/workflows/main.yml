@@ -1,8 +1,8 @@
 # Nom pour ce workflow
-name: "Déploiement auto suite à un push sur la branche master"
+name: "Déploiement auto suite à un push sur la branche main"
 
 # ----------------------------------------------------------
-# Trigger sur push sur la branche master
+# Trigger sur push sur la branche main  
 on:
   push:
     branches:
